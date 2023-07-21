@@ -1,31 +1,12 @@
 <?php
     require_once "db_connect.php";
+    $id = $_GET["x"];
 
-    $sql = "SELECT * FROM `products`";
+    $sql = "SELECT * FROM products WHERE id = $id";
     $result = mysqli_query($connect, $sql);
 
-    $layout = "";
- 
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_assoc($result)){
-            $layout .= "<div>
-            <div class='card' style='width: 18rem;'>
-                <img src='pictures/{$row["picture"]}' class='card-img-top' alt='...'>
-                <div class='card-body'>
-                <h5 class='card-title'>{$row["name"]}</h5>
-                <p class='card-text'>{$row["price"]}</p>
-                <a href='details.php?x={$row["id"]}' class='btn btn-primary'>Details</a>
-                <a href='update.php?x={$row["id"]}' class='btn btn-warning'>Update</a>
-                <a href='delete.php?x={$row["id"]}' class='btn btn-danger'>Delete</a>
-                </div>
-                </div>
-          </div>";
-        }
-    }else {
-        $layout .= "No Results";
-    }
+    $row = mysqli_fetch_assoc($result);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +39,11 @@
 
     <div class="container">
         <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
-            <?= $layout ?>
+            <div>
+                <p><?= $row["name"] ?></p>
+                <p><?= $row["price"] ?></p>
+                <p><img src="pictures/<?= $row["picture"] ?>" width="200"></p>
+            </div>
         </div>
     </div>
    
