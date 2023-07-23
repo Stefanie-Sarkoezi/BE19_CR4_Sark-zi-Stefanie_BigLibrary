@@ -12,18 +12,19 @@
         $publisherName = $_POST["publisher_name"];
         $publisherAddress = $_POST["publisher_address"];
         $publishDate = $_POST["publish_date"];
+        $status = $_POST["status"];
         $image = fileUpload($_FILES["image"]);
 
-            $sql = "INSERT INTO `media`( `title`, `ISBN`, `short_description`, `type`,`author_last_name`, `author_first_name`, `publisher_name`, `publisher_address`, `publish_date`, `image`) VALUES ('$title', '$ISBN', '$description', '$type', '$authorFN', '$authorLN', '$publisherName', '$publisherAddress', '$publishDate', '{$image [0]}')";
+            $sql = "INSERT INTO `media`( `title`, `ISBN`, `short_description`, `type`,`author_last_name`, `author_first_name`, `publisher_name`, `publisher_address`, `publish_date`,`status`,  `image`) VALUES ('$title', '$ISBN', '$description', '$type', '$authorFN', '$authorLN', '$publisherName', '$publisherAddress', '$publishDate','$status', '{$image [0]}')";
 
         if(mysqli_query($connect, $sql)){
             echo "<div class='alert alert-success' role='alert'>
-                    New entry has been created, {$image[1]}
+                    New entry has been created. {$image[1]}
                 </div>";
-                header("refresh: 3; url = index.php");
+                header("refresh: 5; url = index.php");
         }else {
             echo "<div class='alert alert-danger' role='alert'>
-                    Ups! Something went wrong., {$image[1]}
+                    Oops! Something went wrong. {$image[1]}
                 </div>";
         }
     }
@@ -34,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create</title>
     <link rel="Stylesheet" href="../css/create.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
@@ -49,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item ms-3 me-4">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="create.php">Create product</a>
@@ -76,11 +77,11 @@
             </div>
             <div class="mb-3">
                 <label for="ISBN" class="form-label">ISBN:</label>
-                <input type="number" class="form-control"  id="ISBN"  aria-describedby="ISBN"  name="ISBN">
+                <input type="text" class="form-control"  id="ISBN"  aria-describedby="ISBN"  name="ISBN">
             </div>
             <div class="mb-3">
                 <label for="short_description" class="form-label">Short Description:</label>
-                <input type="text" style="height: 10vh;" class="form-control"  id="short_description"  aria-describedby="short_description"  name="short_description">
+                <textarea type="text" style="height: 20vh;" class="form-control"  id="short_description"  aria-describedby="short_description"  name="short_description"></textarea>
             </div>
             <div class="mb-3">
                 <label for="type" class="form-label">Type:</label>
@@ -105,6 +106,10 @@
             <div class="mb-3">
                 <label for="publish_date" class="form-label">Publish Date:</label>
                 <input type="date" class="form-control"  id="publish_date"  aria-describedby="publish_date"  name="publish_date">
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status (How many items available):</label>
+                <input type="number" class="form-control"  id="status"  aria-describedby="status"  name="status">
             </div>
            <div class="mb-3">
                 <label for="image" class="form-label">Image:</label>

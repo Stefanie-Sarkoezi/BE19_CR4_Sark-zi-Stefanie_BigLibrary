@@ -12,17 +12,14 @@
             <div class='card gap-3 mt-5 mb-5 shadow' style='width: 18rem;'>
                 <img src='../images/{$row["image"]}' class='card-img-top' alt='...' style='height: 30vh;'>
                 <div class='card-body'>
-                <h4 class='card-title mb-4 text-center' style='height: 8vh;' >{$row["title"]}</h4>
+                <h4 class='card-title mb-4 text-center d-flex align-items-center justify-content-center' style='height: 8vh;' >{$row["title"]}</h4>
                 <hr class='TitleHR'>
                 <p class='card-text mt-5'><b>Author:</b> <br> {$row["author_first_name"]} {$row["author_last_name"]}</p>
-                <p class='card-text'> <a href='publisher.php' id='publisherBtn'> <b>Publisher:</b><br> {$row["publisher_name"]}, {$row["publisher_address"]} </a></p>
+                <p class='card-text'> <a href='publisher.php?i={$row["publisher_name"]}' id='publisherBtn'> <b>Publisher:</b><br> {$row["publisher_name"]}, {$row["publisher_address"]} </a></p>
                 <p class='card-text mb-5'><b>Publish Date:</b><br> {$row["publish_date"]}</p>
-                <p class='card-text mb-5'><b>Description:</b><br> {$row["short_description"]}</p>
-                <p class='card-text'><b>Type:</b> {$row["type"]}</p>
-                <p class='card-text mb-5'><b>ISBN:</b> {$row["ISBN"]}</p>
                 <div class='buttons text-center'> 
                     <a href='details.php?x={$row["id"]}' class='btn btn-dark'>Details</a>
-                    <a href='update.php?x={$row["id"]}' class='btn btn-dark'>Edit</a>
+                    <a href='edit.php?x={$row["id"]}' class='btn btn-dark'>Edit</a>
                     <a href='delete.php?x={$row["id"]}' class='btn btn-dark'>Delete</a> 
                 </div>
                 </div>
@@ -54,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item ms-3 me-4">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="create.php">Create product</a>
